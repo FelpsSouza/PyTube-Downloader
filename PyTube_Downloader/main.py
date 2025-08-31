@@ -1,6 +1,8 @@
 import yt_dlp
 from tqdm import tqdm
 import msvcrt
+import tkinter as tk
+from tkinter import filedialog
 
 # Função de progresso para o yt-dlp
 def progress_hook(d):
@@ -24,9 +26,12 @@ def progress_hook(d):
             progress_hook.bar.close()
         print("\n✅ Download complete! Converting if needed...")
 
+root = tk.Tk()
+root.withdraw()
+
 # Entrada do usuário
 url = input("Paste YouTube video link: ")
-download_location = "C:\Downloads\PyTube Downloader"
+download_location = filedialog.askdirectory(title="Select save location for video or playlist")
 
 # Configurações do yt-dlp
 ydl_opts = {
